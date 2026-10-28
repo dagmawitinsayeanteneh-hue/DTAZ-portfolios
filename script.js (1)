@@ -1,0 +1,151 @@
+
+const MY_EMAIL = "dagmawitinsayeanteneh@gmail.com";
+
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+/* Video player */
+const modal = document.getElementById("videoModal");
+const player = document.getElementById("videoPlayer");
+const videoStatus = document.getElementById("videoStatus");
+
+document.querySelectorAll(".project").forEach(card => {
+  function playProject() {
+    const title = card.querySelector("h3").textContent;
+    const source = card.dataset.video;
+
+    document.getElementById("videoTitle").textContent = title;
+
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
+
+    videoStatus.textContent = "Loading video...";
+    player.src = source;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    player.onerror = () => {
+      videoStatus.textContent =
+        "Video not found. Add your video file at: " + source;
+    };
+
+    player.onloadeddata = () => {
+      videoStatus.textContent = "Enjoy watching!";
+    };
+
+    player.play().catch(() => {
+      videoStatus.textContent =
+        "Tap the video play button to start.";
+    });
+  }
+
+  card.querySelector(".watch-btn").addEventListener("click", playProject);
+  card.querySelector(".thumbnail").addEventListener("click", playProject);
+});
+
+function closeVideo() {
+  player.pause();
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("closeVideo")
+  .addEventListener("click", closeVideo);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeVideo();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeVideo();
+});
+
+/* Email contact form */
+document.getElementById("contactForm")
+  .addEventListener("submit", event => {
+    event.preventDefault();
+
+    const name = document.getElementById("senderName").value.trim();
+    const sender = document.getElementById("senderEmail").value.trim();
+    const message = document.getElementById("senderMessage").value.trim();
+    const status = document.getElementById("formStatus");
+
+    if (!name || !sender || !message) return;
+
+    const subject = encodeURIComponent("Portfolio inquiry from " + name);
+    const body = encodeURIComponent(
+      "Name: " + name + "\n" +
+      "Reply email: " + sender + "\n\n" +
+      "Message:\n" + message
+    );
+
+    status.textContent =
+      "Opening your email app. Press Send there to deliver your message.";
+
+    window.location.href =
+      "mailto:" + MY_EMAIL +
+      "?subject=" + subject +
+      "&body=" + body;
+  });
+
+/* Thunder and lightning */
+const flash = document.getElementById("stormFlash");
+const lightning = document.getElementById("lightning");
+const boltPath = document.getElementById("boltPath");
+const boltBranch = document.getElementById("boltBranch");
+const thunder = document.getElementById("thunderSound");
+
+function makeBolt() {
+  const x = 70 + Math.random() * 260;
+  let y = -10;
+  let points = `${x},${y}`;
+
+  while (y < 700) {
+    y += 18 + Math.random() * 35;
+    points += ` ${x + (Math.random() - 0.5) * 75},${y}`;
+  }
+
+  const coords = points.split(" ");
+  boltPath.setAttribute("d", "M" + coords.join(" L"));
+
+  const middle = coords[Math.floor(coords.length * 0.45)]
+    .split(",").map(Number);
+
+  boltBranch.setAttribute(
+    "d",
+    `M${middle[0]},${middle[1]} l35,25 l-12,38 l40,22`
+  );
+
+  lightning.style.animation = "none";
+  flash.style.animation = "none";
+
+  void lightning.getBoundingClientRect();
+
+  lightning.style.animation = "boltAppear .38s ease-out";
+  flash.style.animation = "screenFlash .42s ease-out";
+
+  if (thunder.dataset.enabled === "yes" && thunder.src) {
+    thunder.currentTime = 0;
+    thunder.play().catch(() => {});
+  }
+}
+
+if (!reducedMotion) {
+  setTimeout(makeBolt, 300);
+
+  function nextStrike() {
+    setTimeout(() => {
+      makeBolt();
+      nextStrike();
+    }, 4000 + Math.random() * 6000);
+  }
+
+  nextStrike();
+}
+
+/* Enable sound following the visitor's first interaction */
+document.addEventListener("pointerdown", () => {
+  thunder.dataset.enabled = "yes";
+}, { once: true });

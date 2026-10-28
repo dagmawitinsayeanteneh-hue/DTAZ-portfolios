@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>DTAZ | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div id="intro">
+    <div class="intro-bolt">ϟ</div>
+    <h2>WELCOME TO <span>DTAZ</span></h2>
+  </div>
+
+  <div id="storm" aria-hidden="true">
+    <div id="stormFlash"></div>
+    <svg id="lightning" viewBox="0 0 400 700"
+         preserveAspectRatio="none">
+      <path id="boltPath"></path>
+      <path id="boltBranch"></path>
+    </svg>
+  </div>
+
+  <audio id="thunderSound" src="thunder.mp3" preload="auto"></audio>
+
+  <header>
+    <div class="logo">DTAZ ⚡</div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <span class="floating-bolt">ϟ</span>
+      <p class="eyebrow">VIDEO EDITOR • CONTENT CREATOR</p>
+      <h1>Dagmawi <span>Anteneh</span></h1>
+      <h2>TURNING CLIPS INTO ART.</h2>
+      <p class="description">
+        Gaming edits, cinematic transitions, motion effects
+        and engaging YouTube Shorts. Every frame matters.
+      </p>
+      <a class="btn" href="#projects">⚡ VIEW MY PROJECTS</a>
+      <a class="btn outline" href="#contact">EMAIL ME ↗</a>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading">
+        <h2>MY <span>CREATIVE WORK</span></h2>
+        <p>Tap a project to watch your video.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project" data-video="videos/gaming.mp4">
+          <div class="thumbnail"><span>▶</span></div>
+          <h3>Gaming Edits</h3>
+          <p>Gaming clips and smooth transitions.</p>
+          <button class="watch-btn">WATCH VIDEO ↗</button>
+        </article>
+
+        <article class="project" data-video="videos/shorts.mp4">
+          <div class="thumbnail"><span>▶</span></div>
+          <h3>YouTube Shorts</h3>
+          <p>Captions, sound effects and fast cuts.</p>
+          <button class="watch-btn">WATCH VIDEO ↗</button>
+        </article>
+
+        <article class="project" data-video="videos/motion.mp4">
+          <div class="thumbnail"><span>▶</span></div>
+          <h3>Motion Editing</h3>
+          <p>Motion graphics and visual effects.</p>
+          <button class="watch-btn">WATCH VIDEO ↗</button>
+        </article>
+
+        <article class="project" data-video="videos/cinematic.mp4">
+          <div class="thumbnail"><span>▶</span></div>
+          <h3>Cinematic Edits</h3>
+          <p>Cinematic timing and transitions.</p>
+          <button class="watch-btn">WATCH VIDEO ↗</button>
+        </article>
+
+        <article class="project" data-video="videos/velocity.mp4">
+          <div class="thumbnail"><span>▶</span></div>
+          <h3>Velocity Edits</h3>
+          <p>Speed ramps and beat synchronization.</p>
+          <button class="watch-btn">WATCH VIDEO ↗</button>
+        </article>
+
+        <article class="project" data-video="videos/showcase.mp4">
+          <div class="thumbnail"><span>▶</span></div>
+          <h3>Creative Showcase</h3>
+          <p>A collection of editing experiments.</p>
+          <button class="watch-btn">WATCH VIDEO ↗</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-heading">
+        <h2>ABOUT <span>DTAZ</span></h2>
+      </div>
+      <p class="about-text">
+        I'm Dagmawi Anteneh, a video editor and content creator.
+        I enjoy turning ordinary footage into engaging videos
+        with creative transitions, effects, timing and sound.
+      </p>
+    </section>
+
+    <section id="skills">
+      <div class="section-heading">
+        <h2>MY <span>EDITING ARSENAL</span></h2>
+        <p>Five tools. One creative vision.</p>
+      </div>
+
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="app-logo capcut">CC</div>
+          <h3>CapCut</h3>
+          <p>Video editing</p>
+        </div>
+        <div class="skill-card">
+          <div class="app-logo alight">AM</div>
+          <h3>Alight Motion</h3>
+          <p>Motion graphics</p>
+        </div>
+        <div class="skill-card">
+          <div class="app-logo node">N</div>
+          <h3>Node Video</h3>
+          <p>Visual effects</p>
+        </div>
+        <div class="skill-card">
+          <div class="app-logo vn">VN</div>
+          <h3>VN Editor</h3>
+          <p>Creative editing</p>
+        </div>
+        <div class="skill-card">
+          <div class="app-logo gold">GM</div>
+          <h3>Gold Motion</h3>
+          <p>Motion and effects</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="section-heading">
+        <h2>LET'S MAKE <span>SOMETHING EPIC</span></h2>
+        <p>Send me a message about your project.</p>
+      </div>
+
+      <form id="contactForm">
+        <input id="senderName" placeholder="Your name" required>
+        <input id="senderEmail" type="email"
+               placeholder="Your email address" required>
+        <textarea id="senderMessage"
+                  placeholder="Your message..." required></textarea>
+        <button class="btn" type="submit">SEND EMAIL ⚡</button>
+        <p id="formStatus" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>© 2026 DTAZ Portfolio • DESIGNED TO CREATE ⚡</footer>
+
+  <div id="videoModal" class="modal" role="dialog"
+       aria-modal="true" aria-label="Project video">
+    <div class="modal-content">
+      <div class="modal-heading">
+        <h3 id="videoTitle">Project Video</h3>
+        <button id="closeVideo" class="close-btn"
+                aria-label="Close video">×</button>
+      </div>
+      <video id="videoPlayer" controls playsinline></video>
+      <p id="videoStatus" aria-live="polite"></p>
+    </div>
+  </div>
+
+</body>
+</html>
